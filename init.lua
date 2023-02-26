@@ -19,8 +19,22 @@ vim.o.expandtab = true
 vim.wo.number = true
 vim.wo.relativenumber = false
 vim.wo.wrap = false
-vim.g.colors_name = 'everforest'
 vim.g.mapleader = " "
+vim.g.sonokai_style = 'espresso'
+vim.g.sonokai_better_performance = 1
+vim.g.edge_style = 'neon'
+vim.g.edge_better_performance = 1
+vim.g.gruvbox_material_background = 'dark'
+vim.g.gruvbox_material_better_performance = 1
+
+-- do not remove these, why? I don't know
+math.randomseed( os.time() )
+math.random(); math.random(); math.random()
+-- set a random theme from these 
+themes={'everforest', 'onedark', 'moonfly', 'gruvbox-material', 'edge', 'sonokai'} 
+chosen = themes[math.random(1,table.getn(themes))]
+vim.g.colors_name = tostring(chosen)
+
 local key_mapper = function(mode, key, result)
 	vim.api.nvim_set_keymap(
 		mode,
@@ -46,6 +60,11 @@ key_mapper('n', '<C-f>', ':FZF<CR>')
 -- vim.api.nvim_exec([[:au BufWritePost *.lua :so $MYVIMRC | :e]], true)
 vim.api.nvim_exec([[:au BufEnter main.* :cd %:p:h/..]], true)
 vim.api.nvim_exec([[:au BufEnter CMakeLists.txt :cd %:p:h]], true)
+vim.api.nvim_exec([[
+set wildignore+=blue.vim,darkblue.vim,default.vim,delek.vim,desert.vim,
+      \elflord.vim,evening.vim,industry.vim,koehler.vim,morning.vim,murphy.vim,
+      \pablo.vim,peachpuff.vim,ron.vim,shine.vim,slate.vim,torte.vim,zellner.vim
+:]], true)
 local vim = vim
 local execute = vim.api.nvim_command
 local fn = vim.fn
@@ -69,10 +88,14 @@ packer.startup(function()
   
   -- colorschemes
   use 'sainnhe/everforest'
-  use 'morhetz/gruvbox'
-
+  use 'joshdick/onedark.vim'
+  use 'sainnhe/gruvbox-material'
+  use 'sainnhe/edge'
+  use 'sainnhe/sonokai'
+  use { "bluz71/vim-moonfly-colors", as = "moonfly" }
+  
   -- vim airline
-  use 'vim-airline/vim-airline'     
+  use 'vim-airline/vim-airline' 
   
   -- nerdtree
   use'preservim/nerdtree'          
@@ -87,7 +110,9 @@ packer.startup(function()
   use 'mg979/vim-visual-multi'      
   use 'tpope/vim-fugitive'
   use 'jiangmiao/auto-pairs'
-  end
+  use 'aserebryakov/vim-todo-lists'  
+  use 'yegappan/mru'
+end
 )
 
 require'nvim-treesitter.configs'.setup {
