@@ -48,5 +48,6 @@ packer.startup(function()
   use 'yegappan/mru'
   use 'mhinz/vim-startify'
   use 'nvim-lua/plenary.nvim'
+  use 'mbbill/undotree'
 end
 )

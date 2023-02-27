@@ -35,7 +35,7 @@ vim.g.startify_lists = {{
   header={' MRU'}
 }}
 vim.g.startify_files_number = 5
-vim.g.startify_session_persistence = 1
+vim.g.startify_session_persistence = 0
 
 -- do not remove these, why? I don't know
 math.randomseed( os.time() )
@@ -66,6 +66,4 @@ key_mapper('n', '<C-x>', 'V"+y | dd')
 key_mapper('n', '<leader>cd', ':cd %:p:h<CR>')
 key_mapper('n', '<C-f>', ':FZF<CR>')
 
-key_mapper('n', '<leader>ff', ':Telescope find_files<cr>')
-key_mapper('n', '<leader>fg', ':Telescope live_grep<cr>')
-key_mapper('n', '<leader>fb', ':Telescope buffers<cr>')
+key_mapper('n', '<leader>ut', ':UndotreeToggle<cr>')
