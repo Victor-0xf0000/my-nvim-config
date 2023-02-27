@@ -1,4 +1,4 @@
-@echo on
+@echo off
 rm -rf %appdata%/../local/nvim/lua
 rm -rf %appdata%/../local/nvim/after
 rm -rf %appdata%/../nvim/init.lua
